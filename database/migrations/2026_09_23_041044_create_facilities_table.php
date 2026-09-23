@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('facilities', function (Blueprint $table) {
             $table->id();
+            $table->string('name', 60)->unique();
+            $table->string('icon', 60)->nullable();
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }
