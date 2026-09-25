@@ -13,7 +13,14 @@ return new class extends Migration
     {
         Schema::create('listing_images', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('listing_id')->constrained()->cascadeOnDelete();
+            $table->string('image_path');
+            $table->string('thumbnail_path');
+            $table->boolean('is_cover')->default(false);
+            $table->unsignedTinyInteger('sort_order')->default(0);
             $table->timestamps();
+
+            $table->index(['listing_id', 'sort_order']);
         });
     }
 
